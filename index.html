@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Naveen Intraday Signal</title>
+
+<style>
+body{
+background:#0f172a;
+color:white;
+font-family:Arial;
+text-align:center;
+margin:0;
+padding:0;
+}
+
+.header{
+background:#111827;
+padding:15px;
+font-size:20px;
+font-weight:bold;
+}
+
+.card{
+background:#1e293b;
+padding:20px;
+margin:15px;
+border-radius:15px;
+box-shadow:0px 0px 10px #000;
+}
+
+.buy{color:#00ff88;font-size:22px;font-weight:bold;}
+.sell{color:#ff4d4d;font-size:22px;font-weight:bold;}
+.wait{color:yellow;font-size:22px;font-weight:bold;}
+
+button{
+padding:12px 25px;
+border:none;
+border-radius:10px;
+font-size:16px;
+background:#2563eb;
+color:white;
+margin-top:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+Naveen Intraday Signal Dashboard
+</div>
+
+<div class="card">
+<h3>NIFTY 50</h3>
+<div id="niftySignal" class="wait">WAITING...</div>
+</div>
+
+<div class="card">
+<h3>SENSEX</h3>
+<div id="sensexSignal" class="wait">WAITING...</div>
+</div>
+
+<button onclick="generateSignal()">Generate Signal</button>
+
+<script>
+function generateSignal(){
+
+let ema9 = Math.random()*100;
+let ema21 = Math.random()*100;
+let rsi = Math.random()*100;
+let score = 0;
+
+if(ema9 > ema21) score++;
+if(rsi > 60) score++;
+if(ema9 > 70) score++;
+
+let signalText = "";
+
+if(score >= 2){
+signalText = "<span class='buy'>STRONG BUY 🟢</span>";
+}
+else{
+signalText = "<span class='sell'>STRONG SELL 🔴</span>";
+}
+
+document.getElementById("niftySignal").innerHTML = signalText;
+document.getElementById("sensexSignal").innerHTML = signalText;
+
+}
+</script>
+
+</body>
+</html>
